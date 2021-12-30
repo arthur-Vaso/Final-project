@@ -60,7 +60,7 @@ public class WindowAdd extends JFrame {
 		createWindow();
 		loadWindow();
 
-		ButtonConfirmAddController bcac = new ButtonConfirmAddController(this);
+		ButtonConfirmAddController bcac = new ButtonConfirmAddController(this, window);
 		ButtonCancelController bcc = new ButtonCancelController(this, window);
 		
 	}

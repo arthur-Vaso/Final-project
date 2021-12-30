@@ -7,14 +7,16 @@ import br.edu.ifsp.windows.InternalFrameFetch;
 import br.edu.ifsp.windows.MainWindow;
 import br.edu.ifsp.windows.WindowAdd;
 import br.edu.ifsp.windows.WindowEdit;
+import br.edu.ifsp.windows.WindowFetch;
 import br.edu.ifsp.windows.WindowSelectFetch;
 
 public class ButtonCancelController implements ActionListener {
 
 	private MainWindow mainWindow;
 	private WindowAdd windowAdd;
-	private WindowSelectFetch windowFetch;
+	private WindowSelectFetch windowSelectFetch;
 	private InternalFrameFetch internalFrameFetch;
+	private WindowFetch windowFetch;
 
 	private int optionSelected;
 	private WindowEdit windowEdit;
@@ -28,16 +30,19 @@ public class ButtonCancelController implements ActionListener {
 		optionSelected = 0;
 	}
 
-	public ButtonCancelController(WindowSelectFetch windowFetch, MainWindow mainWindow) {
+	public ButtonCancelController(WindowSelectFetch windowSelectFetch, MainWindow mainWindow) {
 		this.mainWindow = mainWindow;
 		
-		this.windowFetch = windowFetch;
-		this.windowFetch.getBtnCancel().addActionListener(this);
+		this.windowSelectFetch = windowSelectFetch;
+		this.windowSelectFetch.getBtnCancel().addActionListener(this);
 
 		optionSelected = 1;
 	}
 
-	public ButtonCancelController(InternalFrameFetch internalFrameFetch) {
+	public ButtonCancelController(InternalFrameFetch internalFrameFetch, WindowSelectFetch windowSelectFetch, WindowFetch windowFetch) {
+		this.windowSelectFetch = windowSelectFetch;
+		this.windowFetch = windowFetch;
+		
 		this.internalFrameFetch = internalFrameFetch;
 		this.internalFrameFetch.getBtnCancel().addActionListener(this);
 
@@ -61,12 +66,14 @@ public class ButtonCancelController implements ActionListener {
 			break;
 		}
 		case 1: {
-			this.windowFetch.dispose();
+			this.windowSelectFetch.dispose();
 			this.mainWindow.setVisible(true);
 			break;
 		}
 		case 2: {
 			this.internalFrameFetch.dispose();
+			this.windowFetch.dispose();
+			this.windowSelectFetch.setVisible(true);
 			break;
 		}
 		case 3: {

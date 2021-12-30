@@ -5,17 +5,21 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JOptionPane;
 
+import br.edu.ifsp.windows.MainWindow;
 import br.edu.ifsp.windows.WindowAdd;
 import br.edu.ifsp.windows.WindowEdit;
 
 public class ButtonConfirmAddController implements ActionListener {
 
+	private MainWindow mainWindow;
 	private WindowAdd windowAdd;
 	private WindowEdit windowEdit;
 	
 	private int optionControler;
 
-	public ButtonConfirmAddController(WindowAdd windowAdd) {
+	public ButtonConfirmAddController(WindowAdd windowAdd, MainWindow mainWindow) {
+		this.mainWindow = mainWindow;
+		
 		this.windowAdd = windowAdd;
 		this.windowAdd.getBtnConfirm().addActionListener(this);
 
@@ -50,6 +54,7 @@ public class ButtonConfirmAddController implements ActionListener {
 				JOptionPane.showMessageDialog(null, windowAdd.getFldTitle().getText() + " adicionado com sucesso!");
 
 				windowAdd.dispose();
+				mainWindow.setVisible(true);
 			}
 			break;
 		}

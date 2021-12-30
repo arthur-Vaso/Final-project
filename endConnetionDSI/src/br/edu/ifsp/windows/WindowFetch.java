@@ -3,14 +3,19 @@ package br.edu.ifsp.windows;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import br.edu.ifsp.controller.CloseProgram;
+
 public class WindowFetch extends JFrame {
+	private WindowSelectFetch windowSelectFetch;
 
 	private JPanel pnl;
 	private InternalFrameFetch internalFrameFetch;
 	private InternalFrameName internalFrameName;
 	
-	public WindowFetch() {
+	public WindowFetch(WindowSelectFetch windowSelectFetch) {
+		this.windowSelectFetch = windowSelectFetch;
 		
+		CloseProgram window = new CloseProgram(this, windowSelectFetch);
 	}
 	
 	public void createWindowFetch(InternalFrameFetch internalFrameFetch) {

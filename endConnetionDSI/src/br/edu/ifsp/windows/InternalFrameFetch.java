@@ -19,6 +19,8 @@ import br.edu.ifsp.controller.FetchControler;
 import br.edu.ifsp.controller.LoadConstraintPanel;
 
 public class InternalFrameFetch extends JInternalFrame{
+	private WindowFetch windowFetch;
+	private WindowSelectFetch windowSelectFetch;
 
 	private JPanel pnl;
 	private GridBagLayout gridBag;
@@ -27,16 +29,16 @@ public class InternalFrameFetch extends JInternalFrame{
 	private JButton btnFetch;
 	private JButton btnCancel;
 	
-	private WindowFetch window;
 
-	public InternalFrameFetch(WindowFetch window) {
-		this.window = window;
+	public InternalFrameFetch(WindowFetch windowFetch, WindowSelectFetch windowSelectFetch) {
+		this.windowFetch = windowFetch;
+		this.windowSelectFetch = windowSelectFetch;
 		
 		createWindow();
 		loadWindow();
 		
-		FetchControler fc = new FetchControler(this, window);
-		ButtonCancelController bcc = new ButtonCancelController(this);
+		FetchControler fc = new FetchControler(this, windowSelectFetch, windowFetch);
+		ButtonCancelController bcc = new ButtonCancelController(this, windowSelectFetch, windowFetch);
 	}
 	
 	private void createWindow() {

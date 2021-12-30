@@ -22,6 +22,7 @@ import javax.swing.border.Border;
 import br.edu.ifsp.controller.ButtonCancelController;
 import br.edu.ifsp.controller.ButtonConfirmAddController;
 import br.edu.ifsp.controller.ButtonFetchController;
+import br.edu.ifsp.controller.CloseProgram;
 import br.edu.ifsp.controller.CreateButton;
 import br.edu.ifsp.controller.CreateField;
 import br.edu.ifsp.controller.CreateFieldArea;
@@ -64,18 +65,19 @@ public class WindowEdit extends JFrame{
 	private GridBagConstraints gbc;
 	private GridBagLayout gridBag;
 	
-	private MainWindow window;
+	private MainWindow mainWindow;
 
-	public WindowEdit(MainWindow window) {
-		this.window = window;
+	public WindowEdit(MainWindow mainWindow) {
+		this.mainWindow = mainWindow;
 		
 		createWindow();
 		loadWindow();
 
 		ButtonFetchController bfc = new ButtonFetchController(this);
 		ButtonConfirmAddController bcac = new ButtonConfirmAddController(this);
-		ButtonCancelController bcc = new ButtonCancelController(this, window);
+		ButtonCancelController bcc = new ButtonCancelController(this, mainWindow);
 		
+		CloseProgram window = new CloseProgram(this, mainWindow);
 	}
 	
 	private void createWindow() {

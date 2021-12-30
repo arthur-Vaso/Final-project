@@ -10,6 +10,7 @@ import javax.swing.JPanel;
 
 import br.edu.ifsp.controller.ButtonCancelController;
 import br.edu.ifsp.controller.ButtonNameSelectFetchController;
+import br.edu.ifsp.controller.CloseProgram;
 import br.edu.ifsp.controller.CreateButton;
 import br.edu.ifsp.controller.CreateLabel;
 import br.edu.ifsp.controller.LoadConstraintPanel;
@@ -22,16 +23,19 @@ public class WindowSelectFetch extends JFrame {
 	private JButton btnByName;
 	private JButton btnListALL;
 	private JButton btnCancel;
-	private MainWindow window;
+	private MainWindow mainWindow;
 
-	public WindowSelectFetch(MainWindow window) {
-		this.window = window;
+	public WindowSelectFetch(MainWindow mainWindow) {
+		this.mainWindow = mainWindow;
 		
 		createWindow();
 		loadWindow();
 
-		ButtonNameSelectFetchController bnsfc = new ButtonNameSelectFetchController(this);
-		ButtonCancelController bcc = new ButtonCancelController(this, window);
+		ButtonNameSelectFetchController bnsfc = new ButtonNameSelectFetchController(this, mainWindow);
+		
+		ButtonCancelController bcc = new ButtonCancelController(this, mainWindow);
+		
+		CloseProgram window = new CloseProgram(this, mainWindow);
 	}
 
 	private void createWindow() {
