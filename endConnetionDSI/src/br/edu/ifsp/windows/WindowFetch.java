@@ -3,39 +3,46 @@ package br.edu.ifsp.windows;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-public class WindowFetch extends JFrame{
+public class WindowFetch extends JFrame {
 
 	private JPanel pnl;
 	private InternalFrameFetch internalFrameFetch;
-
-	public WindowFetch(InternalFrameFetch internalFrameFetch) {
-		this.internalFrameFetch = internalFrameFetch;
-		
-		createWindow();
-		loadWindow();
-		
+	private InternalFrameName internalFrameName;
+	
+	public WindowFetch() {
 		
 	}
 	
-	private void createWindow() {
+	public void createWindowFetch(InternalFrameFetch internalFrameFetch) {
+		this.internalFrameFetch = internalFrameFetch;
+		
 		pnl = new JPanel();
-
-		addComponents();
-	}
-
-	private void addComponents() {
 		pnl.add(internalFrameFetch);
 		
 		add(pnl);
+		
+		loadWindow();
+	}
+
+	public void createWindowName(InternalFrameName internalFrameName) {
+		this.internalFrameName = internalFrameName;
+		
+		pnl = new JPanel();
+		pnl.add(internalFrameName);
+		
+		add(pnl);
+		
+		loadWindow();
 	}
 
 	private void loadWindow() {
 		setTitle("");
-		pack();
 		setVisible(true);
-		setLocationRelativeTo(null);
 		setResizable(true);
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+		repaint();
+		pack();
+		setLocationRelativeTo(null);
 	}
 
 }

@@ -52,12 +52,16 @@ public class WindowAdd extends JFrame {
 	private GridBagConstraints gbc;
 	private GridBagLayout gridBag;
 
-	public WindowAdd() {
+	private MainWindow window;
+
+	public WindowAdd(MainWindow window) {
+		this.window = window;
+		
 		createWindow();
 		loadWindow();
 
 		ButtonConfirmAddController bcac = new ButtonConfirmAddController(this);
-		ButtonCancelController bcc = new ButtonCancelController(this);
+		ButtonCancelController bcc = new ButtonCancelController(this, window);
 		
 	}
 	

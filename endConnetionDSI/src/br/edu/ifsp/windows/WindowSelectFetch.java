@@ -22,13 +22,16 @@ public class WindowSelectFetch extends JFrame {
 	private JButton btnByName;
 	private JButton btnListALL;
 	private JButton btnCancel;
+	private MainWindow window;
 
-	public WindowSelectFetch() {
+	public WindowSelectFetch(MainWindow window) {
+		this.window = window;
+		
 		createWindow();
 		loadWindow();
 
 		ButtonNameSelectFetchController bnsfc = new ButtonNameSelectFetchController(this);
-		ButtonCancelController bcc = new ButtonCancelController(this);
+		ButtonCancelController bcc = new ButtonCancelController(this, window);
 	}
 
 	private void createWindow() {

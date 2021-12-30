@@ -26,12 +26,16 @@ public class InternalFrameFetch extends JInternalFrame{
 	private JTextField fldFetch;
 	private JButton btnFetch;
 	private JButton btnCancel;
+	
+	private WindowFetch window;
 
-	public InternalFrameFetch() {
+	public InternalFrameFetch(WindowFetch window) {
+		this.window = window;
+		
 		createWindow();
 		loadWindow();
 		
-		FetchControler fc = new FetchControler(this);
+		FetchControler fc = new FetchControler(this, window);
 		ButtonCancelController bcc = new ButtonCancelController(this);
 	}
 	
