@@ -4,26 +4,34 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import br.edu.ifsp.windows.InternalFrameFetch;
+import br.edu.ifsp.windows.MainWindow;
 import br.edu.ifsp.windows.WindowAdd;
+import br.edu.ifsp.windows.WindowEdit;
 import br.edu.ifsp.windows.WindowSelectFetch;
 
 public class ButtonCancelController implements ActionListener {
 
+	private MainWindow mainWindow;
 	private WindowAdd windowAdd;
 	private WindowSelectFetch windowFetch;
 	private InternalFrameFetch internalFrameFetch;
 
 	private int optionSelected;
+	private WindowEdit windowEdit;
 
-	public ButtonCancelController(WindowAdd window) {
-		this.windowAdd = window;
+	public ButtonCancelController(WindowAdd windowAdd, MainWindow mainWindow) {
+		this.mainWindow = mainWindow;
+
+		this.windowAdd = windowAdd;
 		this.windowAdd.getBtnCancel().addActionListener(this);
 
 		optionSelected = 0;
 	}
 
-	public ButtonCancelController(WindowSelectFetch window) {
-		this.windowFetch = window;
+	public ButtonCancelController(WindowSelectFetch windowFetch, MainWindow mainWindow) {
+		this.mainWindow = mainWindow;
+		
+		this.windowFetch = windowFetch;
 		this.windowFetch.getBtnCancel().addActionListener(this);
 
 		optionSelected = 1;
@@ -36,19 +44,34 @@ public class ButtonCancelController implements ActionListener {
 		optionSelected = 2;
 	}
 
+	public ButtonCancelController(WindowEdit windowEdit, MainWindow mainWindow) {
+		this.mainWindow = mainWindow;
+		this.windowEdit = windowEdit;
+		this.windowEdit.getBtnCancel().addActionListener(this);
+
+		optionSelected = 3;
+	}
+
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		switch (optionSelected) {
 		case 0: {
 			this.windowAdd.dispose();
+			this.mainWindow.setVisible(true);
 			break;
 		}
 		case 1: {
 			this.windowFetch.dispose();
+			this.mainWindow.setVisible(true);
 			break;
 		}
 		case 2: {
 			this.internalFrameFetch.dispose();
+			break;
+		}
+		case 3: {
+			this.windowEdit.dispose();
+			this.mainWindow.setVisible(true);
 			break;
 		}
 		}

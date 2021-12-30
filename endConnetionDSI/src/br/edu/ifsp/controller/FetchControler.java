@@ -5,12 +5,16 @@ import java.awt.event.ActionListener;
 
 import br.edu.ifsp.windows.InternalFrameFetch;
 import br.edu.ifsp.windows.InternalFrameName;
+import br.edu.ifsp.windows.WindowFetch;
 
 public class FetchControler implements ActionListener {
 
 	private InternalFrameFetch internalFrameFetch;
+	private WindowFetch window;
 
-	public FetchControler(InternalFrameFetch internalFrameFetch) {
+	public FetchControler(InternalFrameFetch internalFrameFetch, WindowFetch window) {
+		this.window = window;
+		
 		this.internalFrameFetch = internalFrameFetch;
 		this.internalFrameFetch.getBtnFetch().addActionListener(this);
 	}
@@ -19,8 +23,12 @@ public class FetchControler implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		CheckField cg = new CheckField();
 		if(cg.isBlank(internalFrameFetch.getFldFetch(), internalFrameFetch.getLblFetch(), " precisa ser preenchido.")) {
+			
 			internalFrameFetch.dispose();
-			InternalFrameName ifn = new InternalFrameName();
+			this.window.dispose();
+			
+			WindowFetch wfn = new WindowFetch();
+			wfn.createWindowName(new InternalFrameName(wfn));
 		}
 	}
 

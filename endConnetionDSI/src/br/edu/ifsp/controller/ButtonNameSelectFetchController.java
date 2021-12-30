@@ -18,7 +18,9 @@ public class ButtonNameSelectFetchController implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		WindowFetch wfn = new WindowFetch(new InternalFrameFetch());
+		
+		WindowFetch wfn = new WindowFetch();
+		wfn.createWindowFetch(new InternalFrameFetch(wfn));
 		
 		window.dispose();
 	}

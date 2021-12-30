@@ -17,8 +17,8 @@ public class ButtonAddController implements ActionListener{
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		WindowAdd wa = new WindowAdd();
-		
+		WindowAdd wa = new WindowAdd(window);
+		window.dispose();
 	}
 
 }
