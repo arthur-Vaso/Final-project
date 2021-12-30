@@ -9,14 +9,14 @@ import br.edu.ifsp.windows.WindowSelectFetch;
 
 public class ButtonFetchController implements ActionListener {
 
-	private MainWindow window;
+	private MainWindow mainWindow;
 	private WindowEdit windowEdit;
 	private int optionControler;
 
-	public ButtonFetchController(MainWindow window) {
-		this.window = window;
+	public ButtonFetchController(MainWindow mainWindow) {
+		this.mainWindow = mainWindow;
 		
-		window.getBtnFetch().addActionListener(this);
+		mainWindow.getBtnFetch().addActionListener(this);
 
 		optionControler = 0;
 	}
@@ -33,8 +33,8 @@ public class ButtonFetchController implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		switch (optionControler) {
 		case 0: {
-			WindowSelectFetch wsf = new WindowSelectFetch(window);
-			window.dispose();
+			WindowSelectFetch wsf = new WindowSelectFetch(mainWindow);
+			mainWindow.dispose();
 			break;
 		}
 		case 1: {
