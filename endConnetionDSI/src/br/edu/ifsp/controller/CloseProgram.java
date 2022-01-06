@@ -6,6 +6,8 @@ import java.awt.event.WindowListener;
 import javax.swing.JOptionPane;
 
 import br.edu.ifsp.windows.MainWindow;
+import br.edu.ifsp.windows.WindowAdd;
+import br.edu.ifsp.windows.WindowDelete;
 import br.edu.ifsp.windows.WindowEdit;
 import br.edu.ifsp.windows.WindowFetch;
 import br.edu.ifsp.windows.WindowSelectFetch;
@@ -17,6 +19,8 @@ public class CloseProgram implements WindowListener {
 	private WindowEdit windowEdit;
 
 	private int optionClose;
+	private WindowDelete windowDelete;
+	private WindowAdd windowAdd;
 
 	public CloseProgram(MainWindow mainWindow) {
 		this.mainWindow = mainWindow;
@@ -52,6 +56,24 @@ public class CloseProgram implements WindowListener {
 		optionClose = 3;
 	}
 
+	public CloseProgram(WindowDelete windowDelete, MainWindow mainWindow) {
+		this.mainWindow = mainWindow;
+		
+		this.windowDelete = windowDelete;
+		this.windowDelete.addWindowListener(this);
+
+		optionClose = 4;
+	}
+
+	public CloseProgram(WindowAdd windowAdd, MainWindow mainWindow) {
+		this.mainWindow = mainWindow;
+		
+		this.windowAdd = windowAdd;
+		this.windowAdd.addWindowListener(this);
+
+		optionClose = 5;
+	}
+
 	@Override
 	public void windowOpened(WindowEvent e) {
 		// TODO Auto-generated method stub
@@ -83,6 +105,16 @@ public class CloseProgram implements WindowListener {
 		}
 		case 3: {
 			windowEdit.dispose();
+			mainWindow.setVisible(true);
+			break;
+		}
+		case 4: {
+			windowDelete.dispose();
+			mainWindow.setVisible(true);
+			break;
+		}
+		case 5: {
+			windowAdd.dispose();
 			mainWindow.setVisible(true);
 			break;
 		}
