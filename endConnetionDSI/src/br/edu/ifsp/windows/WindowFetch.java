@@ -6,21 +6,12 @@ import javax.swing.JPanel;
 import br.edu.ifsp.controller.CloseProgram;
 
 public class WindowFetch extends JFrame {
-	private WindowSelectFetch windowSelectFetch;
-
 	private JPanel pnl;
-	private InternalFrameFetch internalFrameFetch;
-	private InternalFrameName internalFrameName;
-	
 	public WindowFetch(WindowSelectFetch windowSelectFetch) {
-		this.windowSelectFetch = windowSelectFetch;
-		
-		CloseProgram window = new CloseProgram(this, windowSelectFetch);
+		new CloseProgram(this, windowSelectFetch);
 	}
 	
 	public void createWindowFetch(InternalFrameFetch internalFrameFetch) {
-		this.internalFrameFetch = internalFrameFetch;
-		
 		pnl = new JPanel();
 		pnl.add(internalFrameFetch);
 		
@@ -30,8 +21,6 @@ public class WindowFetch extends JFrame {
 	}
 
 	public void createWindowName(InternalFrameName internalFrameName) {
-		this.internalFrameName = internalFrameName;
-		
 		pnl = new JPanel();
 		pnl.add(internalFrameName);
 		

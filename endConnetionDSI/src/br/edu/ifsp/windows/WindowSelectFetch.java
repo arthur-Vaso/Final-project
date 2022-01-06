@@ -1,5 +1,6 @@
 package br.edu.ifsp.windows;
 
+import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 
@@ -9,6 +10,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import br.edu.ifsp.controller.ButtonCancelController;
+import br.edu.ifsp.controller.ButtonListAllController;
 import br.edu.ifsp.controller.ButtonNameSelectFetchController;
 import br.edu.ifsp.controller.CloseProgram;
 import br.edu.ifsp.controller.CreateButton;
@@ -23,19 +25,15 @@ public class WindowSelectFetch extends JFrame {
 	private JButton btnByName;
 	private JButton btnListALL;
 	private JButton btnCancel;
-	private MainWindow mainWindow;
-
 	public WindowSelectFetch(MainWindow mainWindow) {
-		this.mainWindow = mainWindow;
-		
 		createWindow();
 		loadWindow();
 
-		ButtonNameSelectFetchController bnsfc = new ButtonNameSelectFetchController(this, mainWindow);
+		new ButtonNameSelectFetchController(this, mainWindow);
+		new ButtonListAllController(this);
+		new ButtonCancelController(this, mainWindow);
 		
-		ButtonCancelController bcc = new ButtonCancelController(this, mainWindow);
-		
-		CloseProgram window = new CloseProgram(this, mainWindow);
+		new CloseProgram(this, mainWindow);
 	}
 
 	private void createWindow() {
@@ -45,7 +43,8 @@ public class WindowSelectFetch extends JFrame {
 
 		lblInfo = new CreateLabel().setLabel(lblInfo, "Procurar por:", "Arial", 0, 20);
 
-		btnByName = new CreateButton().setButton(btnByName,   "    Nome    ", "Arial", 0, 20);
+		btnByName = new CreateButton().setButton(btnByName,   "ID", "Arial", 0, 20);
+		btnByName.setPreferredSize(new Dimension(140, 30));
 		btnListALL = new CreateButton().setButton(btnListALL, "Listar todos", "Arial", 0, 20);
 
 		btnCancel = new CreateButton().setButton(btnCancel,   "  Cancelar  ", "Arial", 0, 20);

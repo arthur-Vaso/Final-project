@@ -2,13 +2,10 @@ package br.edu.ifsp.windows;
 
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.LayoutManager;
-
 import javax.swing.JButton;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 import br.edu.ifsp.controller.ButtonCancelController;
@@ -40,14 +37,14 @@ public class InternalFrameFetch extends JInternalFrame{
 		FetchControler fc = new FetchControler(this, windowSelectFetch, windowFetch);
 		ButtonCancelController bcc = new ButtonCancelController(this, windowSelectFetch, windowFetch);
 	}
-	
+
 	private void createWindow() {
 		gridBag = new GridBagLayout();
 
 		pnl = new JPanel(gridBag);
 
-		lblFetch = new CreateLabel().setLabel(lblFetch, "Título", "Arial", 0, 20);
-		fldFetch = new CreateField().setField(fldFetch, 30, "Arial", 0, 20);
+		lblFetch = new CreateLabel().setLabel(lblFetch, "ID", "Arial", 0, 20);
+		fldFetch = new CreateField().setField(fldFetch, 30, "Arial", 0, 20, true);
 		
 		btnFetch = new CreateButton().setButton(btnFetch,   "Buscar", "Arial", 0, 20);
 		btnCancel = new CreateButton().setButton(btnCancel,   "Cancelar", "Arial", 0, 20);
@@ -87,9 +84,14 @@ public class InternalFrameFetch extends JInternalFrame{
 	public JLabel getLblFetch() {
 		return lblFetch;
 	}
-
+	
 	public JTextField getFldFetch() {
 		return fldFetch;
+	}
+
+	public void setFldFetch(String string) {
+		fldFetch.setText(string);
+		fldFetch.requestFocusInWindow();
 	}
 	
 }

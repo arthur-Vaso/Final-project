@@ -1,6 +1,5 @@
 package br.edu.ifsp.controller;
 
-import java.awt.Component;
 import java.awt.Container;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -9,11 +8,14 @@ import javax.swing.JComponent;
 
 public class LoadConstraintPanel {
 
+	public LoadConstraintPanel() {
 
-	public  JComponent setLoadConstraintPanel(Container container, JComponent component, GridBagConstraints gbc, GridBagLayout gridBag, int row, int col, int width, int height,
-			int spaceX, int spaceY, int anchor) {
+	}
+
+	public JComponent setLoadConstraintPanel(Container container, JComponent component, GridBagConstraints gbc,
+			GridBagLayout gridBag, int row, int col, int width, int height, int spaceX, int spaceY, int anchor) {
 		final int SPACE = 5;
-		
+
 		gbc.gridy = row;
 		gbc.gridx = col;
 		gbc.gridwidth = width;
@@ -27,15 +29,10 @@ public class LoadConstraintPanel {
 		gbc.insets.bottom = SPACE;
 
 		gridBag.setConstraints(component, gbc);
-		
-		
-		container.add(component);
-		
-return component;
-	}
 
-	public LoadConstraintPanel() {
-		
+		container.add(component);
+
+		return component;
 	}
 
 }

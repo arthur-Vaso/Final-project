@@ -1,11 +1,8 @@
 package br.edu.ifsp.windows;
 
 import java.awt.Color;
-import java.awt.Component;
-import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.Insets;
 import java.text.ParseException;
 
 import javax.swing.BorderFactory;
@@ -17,8 +14,6 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
-import javax.swing.border.Border;
-
 import br.edu.ifsp.controller.ButtonCancelController;
 import br.edu.ifsp.controller.ButtonConfirmAddController;
 import br.edu.ifsp.controller.ButtonFetchController;
@@ -33,7 +28,7 @@ import br.edu.ifsp.controller.LoadConstraintPanel;
 public class WindowEdit extends JFrame{
 	private JPanel pnlFetch;
 	private JLabel lblFetch;
-	private JTextField fldFetch;
+	private JFormattedTextField fldFetch;
 	private JButton btnFetch;
 	
 	private JPanel pnlEdit;
@@ -74,7 +69,7 @@ public class WindowEdit extends JFrame{
 		loadWindow();
 
 		ButtonFetchController bfc = new ButtonFetchController(this);
-		ButtonConfirmAddController bcac = new ButtonConfirmAddController(this);
+		ButtonConfirmAddController bcac = new ButtonConfirmAddController(this, mainWindow);
 		ButtonCancelController bcc = new ButtonCancelController(this, mainWindow);
 		
 		CloseProgram window = new CloseProgram(this, mainWindow);
@@ -85,8 +80,12 @@ public class WindowEdit extends JFrame{
 		
 		pnlFetch = new JPanel(gridBag);
 		pnlFetch.setBorder(BorderFactory.createLineBorder(Color.GRAY));
-		lblFetch = new CreateLabel().setLabel(lblFetch, "Título", "Arial", 0, 15);
-		fldFetch = new CreateField().setField(fldFetch, 34, "Arial", 0, 12);
+		lblFetch = new CreateLabel().setLabel(lblFetch, "ID", "Arial", 0, 15);
+		try {
+			fldFetch = new CreateFormattedField().setFormattedField(fldAmount, 3, "####", "Arial", 0, 12, true);
+		} catch (ParseException e1) {
+			e1.printStackTrace();
+		}
 		btnFetch = new CreateButton().setButton(btnFetch,   "Buscar", "Arial", 0, 15);
 
 		pnlEdit = new JPanel(gridBag);
@@ -94,40 +93,41 @@ public class WindowEdit extends JFrame{
 
 		pnlFields = new JPanel(gridBag);
 		lblTitle = new CreateLabel().setLabel(lblTitle, "Título", "Arial", 0, 15);
-		fldTitle = new CreateField().setField(fldTitle, 34, "Arial", 0, 12);
+		fldTitle = new CreateField().setField(fldTitle, 34, "Arial", 0, 12, true);
 
 		lblDescription = new CreateLabel().setLabel(lblDescription, "Descrição", "Arial", 0, 15);
-		fldDescription = new CreateFieldArea().setFieldArea(fldDescription, 5, 34, "Arial", 0, 12);
+		fldDescription = new CreateFieldArea().setFieldArea(fldDescription, 5, 34, "Arial", 0, 12, true);
 		scroll = new JScrollPane(fldDescription);
 		
 		lblHardware = new CreateLabel().setLabel(lblHardware, "Tipo de sistema", "Arial", 0, 15);
-		fldHardware = new CreateField().setField(fldHardware, 10, "Arial", 0, 12);
+		fldHardware = new CreateField().setField(fldHardware, 10, "Arial", 0, 12, true);
 
 		lblMinimumAge = new CreateLabel().setLabel(lblMinimumAge, "Classificação etária", "Arial", 0, 15);
-		fldMinimumAge = new CreateField().setField(fldMinimumAge, 9, "Arial", 0, 12);
+		fldMinimumAge = new CreateField().setField(fldMinimumAge, 9, "Arial", 0, 12, true);
 
 		lblGenderOne = new CreateLabel().setLabel(lblGenderOne, "Gênero 1", "Arial", 0, 15);
-		fldGenderOne = new CreateField().setField(fldGenderOne, 10, "Arial", 0, 12);
+		fldGenderOne = new CreateField().setField(fldGenderOne, 10, "Arial", 0, 12, true);
 
 		lblGenderTwo = new CreateLabel().setLabel(lblGenderTwo, "Gênero 2", "Arial", 0, 15);
-		fldGenderTwo = new CreateField().setField(fldGenderTwo, 9, "Arial", 0, 12);
+		fldGenderTwo = new CreateField().setField(fldGenderTwo, 9, "Arial", 0, 12, true);
 
 		lblPrice = new CreateLabel().setLabel(lblPrice, "Valor", "Arial", 0, 15);
 		try {
-			fldPrice = new CreateFormattedField().setFormattedField(fldPrice, 7, "#,##0.00", "Arial", 0, 12);
+			fldPrice = new CreateFormattedField().setFormattedField(fldPrice, 7, "#,##0.00", "Arial", 0, 12, true);
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
 
 		lblAmount = new CreateLabel().setLabel(lblAmount, "Quantidade", "Arial", 0, 15);
 		try {
-			fldAmount = new CreateFormattedField().setFormattedField(fldAmount, 3, "###", "Arial", 0, 12);
+			fldAmount = new CreateFormattedField().setFormattedField(fldAmount, 3, "###", "Arial", 0, 12, true);
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
 
 		pnlButtons = new JPanel(gridBag);
 		btnConfirm = new CreateButton().setButton(btnConfirm, "Confirmar", "Arial", 0, 15);
+		btnConfirm.setEnabled(false);
 
 		btnCancel = new CreateButton().setButton(btnCancel, "Cancelar", "Arial", 0, 15);
 
@@ -269,5 +269,41 @@ public class WindowEdit extends JFrame{
 	public JFormattedTextField getFldAmount() {
 		return fldAmount;
 	}
-	
+
+	public void setFldFetch(String string) {
+		this.fldFetch.setText(string);
+	}
+
+	public void setFldTitle(String string) {
+		this.fldTitle.setText(string);
+	}
+
+	public void setFldDescription(String string) {
+		this.fldDescription.setText(string);
+	}
+
+	public void setFldHardware(String string) {
+		this.fldHardware.setText(string);
+	}
+
+	public void setFldMinimumAge(String string) {
+		this.fldMinimumAge.setText(string);
+	}
+
+	public void setFldGenderOne(String string) {
+		this.fldGenderOne.setText(string);
+	}
+
+	public void setFldGenderTwo(String string) {
+		this.fldGenderTwo.setText(string);
+	}
+
+	public void setFldPrice(String string) {
+		this.fldPrice.setText(string);
+	}
+
+	public void setFldAmount(String string) {
+		this.fldAmount.setText(string);
+	}
+
 }

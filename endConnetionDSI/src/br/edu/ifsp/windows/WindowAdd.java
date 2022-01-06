@@ -15,6 +15,7 @@ import javax.swing.JTextField;
 
 import br.edu.ifsp.controller.ButtonCancelController;
 import br.edu.ifsp.controller.ButtonConfirmAddController;
+import br.edu.ifsp.controller.CloseProgram;
 import br.edu.ifsp.controller.CreateButton;
 import br.edu.ifsp.controller.CreateField;
 import br.edu.ifsp.controller.CreateFieldArea;
@@ -52,16 +53,18 @@ public class WindowAdd extends JFrame {
 	private GridBagConstraints gbc;
 	private GridBagLayout gridBag;
 
-	private MainWindow window;
+	private MainWindow mainWindow;
 
-	public WindowAdd(MainWindow window) {
-		this.window = window;
+	public WindowAdd(MainWindow mainWindow) {
+		this.mainWindow = mainWindow;
 		
 		createWindow();
 		loadWindow();
 
-		ButtonConfirmAddController bcac = new ButtonConfirmAddController(this, window);
-		ButtonCancelController bcc = new ButtonCancelController(this, window);
+		ButtonConfirmAddController bcac = new ButtonConfirmAddController(this, mainWindow);
+		ButtonCancelController bcc = new ButtonCancelController(this, mainWindow);
+		
+		CloseProgram window = new CloseProgram(this, mainWindow);
 		
 	}
 	
@@ -72,34 +75,34 @@ public class WindowAdd extends JFrame {
 
 		pnlFields = new JPanel(gridBag);
 		lblTitle = new CreateLabel().setLabel(lblTitle, "Título", "Arial", 0, 15);
-		fldTitle = new CreateField().setField(fldTitle, 34, "Arial", 0, 12);
+		fldTitle = new CreateField().setField(fldTitle, 34, "Arial", 0, 12, true);
 
 		lblDescription = new CreateLabel().setLabel(lblDescription, "Descrição", "Arial", 0, 15);
-		fldDescription = new CreateFieldArea().setFieldArea(fldDescription, 5, 34, "Arial", 0, 12);
+		fldDescription = new CreateFieldArea().setFieldArea(fldDescription, 5, 34, "Arial", 0, 12, true);
 		scroll = new JScrollPane(fldDescription);
 		
 		lblHardware = new CreateLabel().setLabel(lblHardware, "Tipo de sistema", "Arial", 0, 15);
-		fldHardware = new CreateField().setField(fldHardware, 10, "Arial", 0, 12);
+		fldHardware = new CreateField().setField(fldHardware, 10, "Arial", 0, 12, true);
 
 		lblMinimumAge = new CreateLabel().setLabel(lblMinimumAge, "Classificação etária", "Arial", 0, 15);
-		fldMinimumAge = new CreateField().setField(fldMinimumAge, 9, "Arial", 0, 12);
+		fldMinimumAge = new CreateField().setField(fldMinimumAge, 9, "Arial", 0, 12, true);
 
 		lblGenderOne = new CreateLabel().setLabel(lblGenderOne, "Gênero 1", "Arial", 0, 15);
-		fldGenderOne = new CreateField().setField(fldGenderOne, 10, "Arial", 0, 12);
+		fldGenderOne = new CreateField().setField(fldGenderOne, 10, "Arial", 0, 12, true);
 
 		lblGenderTwo = new CreateLabel().setLabel(lblGenderTwo, "Gênero 2", "Arial", 0, 15);
-		fldGenderTwo = new CreateField().setField(fldGenderTwo, 9, "Arial", 0, 12);
+		fldGenderTwo = new CreateField().setField(fldGenderTwo, 9, "Arial", 0, 12, true);
 
 		lblPrice = new CreateLabel().setLabel(lblPrice, "Valor", "Arial", 0, 15);
 		try {
-			fldPrice = new CreateFormattedField().setFormattedField(fldPrice, 7, "#,##0.00", "Arial", 0, 12);
+			fldPrice = new CreateFormattedField().setFormattedField(fldPrice, 7, "#,##0.00", "Arial", 0, 12, true);
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
 
 		lblAmount = new CreateLabel().setLabel(lblAmount, "Quantidade", "Arial", 0, 15);
 		try {
-			fldAmount = new CreateFormattedField().setFormattedField(fldAmount, 3, "###", "Arial", 0, 12);
+			fldAmount = new CreateFormattedField().setFormattedField(fldAmount, 3, "###", "Arial", 0, 12, true);
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}

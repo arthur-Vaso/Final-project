@@ -8,6 +8,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import br.edu.ifsp.controller.ButtonAddController;
+import br.edu.ifsp.controller.ButtonDeleteController;
 import br.edu.ifsp.controller.ButtonEditController;
 import br.edu.ifsp.controller.ButtonFetchController;
 import br.edu.ifsp.controller.CloseProgram;
@@ -34,7 +35,7 @@ public class MainWindow extends JFrame {
 		ButtonAddController bac = new ButtonAddController(this);
 		ButtonFetchController bfc = new ButtonFetchController(this);
 		ButtonEditController bec = new ButtonEditController(this);
-		
+		ButtonDeleteController bdc = new ButtonDeleteController(this);
 		
 		CloseProgram window = new CloseProgram(this);
 
