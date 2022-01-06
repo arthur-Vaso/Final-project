@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import br.edu.ifsp.windows.InternalFrameFetch;
 import br.edu.ifsp.windows.MainWindow;
 import br.edu.ifsp.windows.WindowAdd;
+import br.edu.ifsp.windows.WindowDelete;
 import br.edu.ifsp.windows.WindowEdit;
 import br.edu.ifsp.windows.WindowFetch;
 import br.edu.ifsp.windows.WindowSelectFetch;
@@ -20,6 +21,7 @@ public class ButtonCancelController implements ActionListener {
 
 	private int optionSelected;
 	private WindowEdit windowEdit;
+	private WindowDelete windowDelete;
 
 	public ButtonCancelController(WindowAdd windowAdd, MainWindow mainWindow) {
 		this.mainWindow = mainWindow;
@@ -51,10 +53,20 @@ public class ButtonCancelController implements ActionListener {
 
 	public ButtonCancelController(WindowEdit windowEdit, MainWindow mainWindow) {
 		this.mainWindow = mainWindow;
+		
 		this.windowEdit = windowEdit;
 		this.windowEdit.getBtnCancel().addActionListener(this);
 
 		optionSelected = 3;
+	}
+
+	public ButtonCancelController(WindowDelete windowDelete, MainWindow mainWindow) {
+		this.mainWindow = mainWindow;
+		
+		this.windowDelete = windowDelete;
+		this.windowDelete.getBtnCancel().addActionListener(this);
+
+		optionSelected = 4;
 	}
 
 	@Override
@@ -78,6 +90,11 @@ public class ButtonCancelController implements ActionListener {
 		}
 		case 3: {
 			this.windowEdit.dispose();
+			this.mainWindow.setVisible(true);
+			break;
+		}
+		case 4: {
+			this.windowDelete.dispose();
 			this.mainWindow.setVisible(true);
 			break;
 		}
