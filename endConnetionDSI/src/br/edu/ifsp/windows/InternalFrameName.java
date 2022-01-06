@@ -1,8 +1,7 @@
 package br.edu.ifsp.windows;
 
 import java.awt.Dimension;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
+import java.util.List;
 
 import javax.swing.JInternalFrame;
 import javax.swing.JPanel;
@@ -10,22 +9,36 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
-import br.edu.ifsp.controller.LoadConstraintPanel;
-import br.edu.ifsp.controller.TableController;
+import br.edu.ifsp.model.Game;
 
 public class InternalFrameName extends JInternalFrame {
 	private JPanel pnl;
 	private JScrollPane scroll;
 	private JTable table;
-	
-	private WindowFetch window;
-	private DefaultTableModel model;
 
-	public InternalFrameName(WindowFetch window) {
+	private WindowFetch window;
+	private WindowFetch windowFetch;
+	
+	private DefaultTableModel model;
+	private Game game;
+	private List<Game> list;
+
+	public InternalFrameName(WindowFetch window, Game game) {
 		this.window = window;
 		model = new DefaultTableModel();
-		
-		loadTable();
+		this.game = game;
+
+		loadTable(0);
+		createWindow();
+		loadWindow();
+	}
+
+	public InternalFrameName(WindowFetch windowFetch, List<Game> list) {
+		this.list = list;
+		this.windowFetch = windowFetch;
+		model = new DefaultTableModel();
+
+		loadTable(1);
 		createWindow();
 		loadWindow();
 	}
@@ -33,10 +46,8 @@ public class InternalFrameName extends JInternalFrame {
 	private void loadWindow() {
 		pnl = new JPanel();
 
-		//table = new JTable();
 		scroll = new JScrollPane(table);
 		scroll.setPreferredSize(new Dimension(800, 200));
-		//TableModel tc = new TableModel(model, this, table);
 
 		addComponents();
 	}
@@ -51,10 +62,9 @@ public class InternalFrameName extends JInternalFrame {
 		setTitle("Lista");
 		pack();
 		setVisible(true);
-		//setResizable(true);
 	}
 
-	public void loadTable() {
+	public void loadTable(int option) {
 		table = new JTable(model);
 		model.addColumn("ID");
 		model.addColumn("Título");
@@ -65,7 +75,7 @@ public class InternalFrameName extends JInternalFrame {
 		model.addColumn("Genero 2");
 		model.addColumn("Preço");
 		model.addColumn("Quantidade");
-		
+
 		table.getColumnModel().getColumn(0).setMinWidth(4);
 		table.getColumnModel().getColumn(1).setMinWidth(20);
 		table.getColumnModel().getColumn(2).setMinWidth(40);
@@ -76,21 +86,49 @@ public class InternalFrameName extends JInternalFrame {
 		table.getColumnModel().getColumn(7).setMinWidth(10);
 		table.getColumnModel().getColumn(8).setMinWidth(5);
 
-		// loadData(model);
+		switch (option) {
+		case 0: {
+			loadDataName(model);
+			break;
+		}
+		case 1: {
+			loadDataList(model);
+			break;
+		}
+		}
+		
+	}
+
+	private void loadDataName(DefaultTableModel model) {
+		model.setNumRows(0);
+		
+		model.addRow(new Object[] { 
+				game.getId(), 
+				game.getTitle(), 
+				game.getDescription(), 
+				game.getHardware(),
+				game.getMinimumAge(), 
+				game.getGenderOne(), 
+				game.getGenderTwo(), 
+				game.getPrice(), 
+				game.getAmount() });
 	}
 	
-	private void loadData(DefaultTableModel model) {
-        model.setNumRows(0);
-        
-        /*internalFrameName.getGerenciador().getVeiculo().forEach((v) -> {
+	private void loadDataList(DefaultTableModel model) {
+		model.setNumRows(0);
+
+		list.forEach((game) -> {
             model.addRow(new Object[]{
-                v.getCodigo(),
-                v.getModelo(),
-                v.getCor(),
-                v.getAnoFabricacao(),
-                v.getTipoTransmicao(),
-                v.getValor()
+            		game.getId(), 
+    				game.getTitle(), 
+    				game.getDescription(), 
+    				game.getHardware(),
+    				game.getMinimumAge(), 
+    				game.getGenderOne(), 
+    				game.getGenderTwo(), 
+    				game.getPrice(), 
+    				game.getAmount()
             });
-        });*/
-    }
+        });
+	}
 }
