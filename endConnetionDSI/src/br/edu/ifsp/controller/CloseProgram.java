@@ -84,10 +84,10 @@ public class CloseProgram implements WindowListener {
 	public void windowClosing(WindowEvent e) {
 		switch (optionClose) {
 		case 0: {
-			if (JOptionPane.YES_OPTION == JOptionPane.showConfirmDialog(null, "Deseja fechar?", "Alerta",
-					JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE, null)) {
-
-				System.out.println("Fechar");
+			if (JOptionPane.YES_OPTION == JOptionPane.showConfirmDialog(null, "Deseja finalizar o programa?", "Alerta de fechamneto",
+					JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE)) {
+				
+				//System.out.println("Fechou");
 				System.exit(0);
 
 			}

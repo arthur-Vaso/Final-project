@@ -3,6 +3,7 @@ package br.edu.ifsp.controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 import br.edu.ifsp.gameDAO.GameDAO;
@@ -55,18 +56,18 @@ public class ButtonConfirmAddController implements ActionListener {
 
 		switch (optionControler) {
 		case 0: {
-			if (cg.isBlank(windowAdd.getFldTitle(), windowAdd.getLblTitle(), " precisa ser preenchido.")
+			if (cg.isBlank(windowAdd.getFldTitle(), windowAdd.getLblTitle(), " é obrigatório.")
 					&& cg.isBlank(windowAdd.getFldDescription(), windowAdd.getLblDescription(),
-							" precisa ser preenchido.")
-					&& cg.isBlank(windowAdd.getFldHardware(), windowAdd.getLblHardware(), " precisa ser preenchido.")
+							" é obrigatório.")
+					&& cg.isBlank(windowAdd.getFldHardware(), windowAdd.getLblHardware(), " é obrigatório.")
 					&& cg.isBlank(windowAdd.getFldMinimumAge(), windowAdd.getLblMinimumAge(),
-							" precisa ser preenchido.")
-					&& cg.isBlank(windowAdd.getFldGenderOne(), windowAdd.getLblGenderOne(), " precisa ser preenchido.")
+							" é obrigatório.")
+					&& cg.isBlank(windowAdd.getFldGenderOne(), windowAdd.getLblGenderOne(), " é obrigatório.")
 					&& cg.isBlank(windowAdd.getFldPrice(), windowAdd.getLblPrice(),
 							" precisa ser preenchido com números.")
 					&& cg.isBlank(windowAdd.getFldAmount(), windowAdd.getLblAmount(),
 							" precisa ser preenchido números.")) {
-
+				
 				Game g = new Game();
 				g.setTitle(windowAdd.getFldTitle().getText());
 				g.setDescription(windowAdd.getFldDescription().getText());
@@ -81,11 +82,9 @@ public class ButtonConfirmAddController implements ActionListener {
 				g = gameDao.saveGame(g);
 
 				if (g != null) {
-					System.out.println("diferente de nulo");
-					System.out.println("titulo: " + g.getTitle().toString());
 
-					System.out.println("Adicionado com sucesso!");
-					JOptionPane.showMessageDialog(null, windowAdd.getFldTitle().getText() + " adicionado com sucesso!");
+					//System.out.println("Adicionado com sucesso!");
+					JOptionPane.showMessageDialog(null, windowAdd.getFldTitle().getText() + " adicionado com sucesso!", "Menssagem", 0, new ImageIcon(""));
 
 					windowAdd.dispose();
 					mainWindow.setVisible(true);
@@ -122,9 +121,9 @@ public class ButtonConfirmAddController implements ActionListener {
 				g = gameDao.saveGame(g);
 
 				if (g != null) {
-					System.out.println("Edição realizada com sucesso!");
-					JOptionPane.showMessageDialog(null, windowEdit.getFldTitle().getText() + " editado com sucesso!");
+					JOptionPane.showMessageDialog(null, windowEdit.getFldTitle().getText() + " editado com sucesso!", "Menssagem", 0, new ImageIcon(""));
 
+					//System.out.println("Edição realizada com sucesso!");
 					windowEdit.dispose();
 					mainWindow.setVisible(true);
 				}
@@ -133,14 +132,14 @@ public class ButtonConfirmAddController implements ActionListener {
 		}
 		case 2: {
 			if (JOptionPane.YES_OPTION == JOptionPane.showConfirmDialog(null,
-					"Deseja excluir " + windowDelete.getFldTitle().getText() + "?", "Alerta", JOptionPane.YES_NO_OPTION,
-					JOptionPane.WARNING_MESSAGE, null)) {
+					"Deseja excluir " + windowDelete.getFldTitle().getText() + "?", "Alerta de exclusão", JOptionPane.YES_NO_OPTION,
+					JOptionPane.ERROR_MESSAGE)) {
 
 				gameDao = new GameDAO();
 				gameDao.removeGame(Integer.valueOf(windowDelete.getFldFetch().getText()));
 
-				System.out.println("Exclusão realizada com sucesso!");
-				JOptionPane.showMessageDialog(null, windowDelete.getFldTitle().getText() + " excluido com sucesso!");
+				//System.out.println("Exclusão realizada com sucesso!");
+				JOptionPane.showMessageDialog(null, windowDelete.getFldTitle().getText() + " excluido com sucesso!", "Menssagem", 0, new ImageIcon(""));
 
 				windowDelete.dispose();
 				mainWindow.setVisible(true);
