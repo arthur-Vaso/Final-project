@@ -39,7 +39,7 @@ public class WindowFetch extends JFrame {
         Image icone = Toolkit.getDefaultToolkit().getImage(url);
         setIconImage(icone);
 		setVisible(true);
-		setResizable(true);
+		setResizable(false);
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		repaint();
 		pack();

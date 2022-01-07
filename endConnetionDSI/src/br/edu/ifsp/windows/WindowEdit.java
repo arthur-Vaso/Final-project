@@ -186,7 +186,7 @@ public class WindowEdit extends JFrame{
 		pack();
 		setVisible(true);
 		setLocationRelativeTo(null);
-		setResizable(true);
+		setResizable(false);
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 	}
 
