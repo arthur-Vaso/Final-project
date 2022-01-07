@@ -7,6 +7,7 @@ import javax.swing.JInternalFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.plaf.basic.BasicInternalFrameUI;
 import javax.swing.table.DefaultTableModel;
 
 import br.edu.ifsp.model.Game;
@@ -16,15 +17,11 @@ public class InternalFrameName extends JInternalFrame {
 	private JScrollPane scroll;
 	private JTable table;
 
-	private WindowFetch window;
-	private WindowFetch windowFetch;
-	
 	private DefaultTableModel model;
 	private Game game;
 	private List<Game> list;
 
-	public InternalFrameName(WindowFetch window, Game game) {
-		this.window = window;
+	public InternalFrameName(WindowFetch windowFetch, Game game) {
 		model = new DefaultTableModel();
 		this.game = game;
 
@@ -35,7 +32,6 @@ public class InternalFrameName extends JInternalFrame {
 
 	public InternalFrameName(WindowFetch windowFetch, List<Game> list) {
 		this.list = list;
-		this.windowFetch = windowFetch;
 		model = new DefaultTableModel();
 
 		loadTable(1);
@@ -59,7 +55,8 @@ public class InternalFrameName extends JInternalFrame {
 	}
 
 	private void createWindow() {
-		setTitle("Lista");
+		BasicInternalFrameUI bifui = (BasicInternalFrameUI) this.getUI();
+		bifui.setNorthPane(null);
 		pack();
 		setVisible(true);
 	}

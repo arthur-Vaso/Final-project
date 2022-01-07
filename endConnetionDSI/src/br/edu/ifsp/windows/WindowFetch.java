@@ -1,5 +1,9 @@
 package br.edu.ifsp.windows;
 
+import java.awt.Image;
+import java.awt.Toolkit;
+import java.net.URL;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -17,7 +21,7 @@ public class WindowFetch extends JFrame {
 		
 		add(pnl);
 		
-		loadWindow();
+		loadWindow("Busca");
 	}
 
 	public void createWindowName(InternalFrameName internalFrameName) {
@@ -26,11 +30,14 @@ public class WindowFetch extends JFrame {
 		
 		add(pnl);
 		
-		loadWindow();
+		loadWindow("Lista");
 	}
 
-	private void loadWindow() {
-		setTitle("");
+	private void loadWindow(String title) {
+		setTitle(title);
+		URL url = getClass().getResource("/br/edu/ifsp/assets/joystickIcon.png");
+        Image icone = Toolkit.getDefaultToolkit().getImage(url);
+        setIconImage(icone);
 		setVisible(true);
 		setResizable(true);
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);

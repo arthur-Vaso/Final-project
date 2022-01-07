@@ -3,6 +3,9 @@ package br.edu.ifsp.windows;
 import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Image;
+import java.awt.Toolkit;
+import java.net.URL;
 import java.text.ParseException;
 
 import javax.swing.BorderFactory;
@@ -84,7 +87,7 @@ public class WindowDelete extends JFrame {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		btnFetch = new CreateButton().setButton(btnFetch, "Buscar", "Arial", 0, 15);
+		btnFetch = new CreateButton().setButton(btnFetch, "Buscar", "Arial", 0, 15, "/br/edu/ifsp/assets/findIcon.png");
 
 		pnlDelete = new JPanel(gridBag);
 		pnlDelete.setBorder(BorderFactory.createLineBorder(Color.GRAY));
@@ -124,10 +127,10 @@ public class WindowDelete extends JFrame {
 		}
 
 		pnlButtons = new JPanel(gridBag);
-		btnConfirm = new CreateButton().setButton(btnConfirm, "Confirmar", "Arial", 0, 15);
+		btnConfirm = new CreateButton().setButton(btnConfirm, "Confirmar", "Arial", 0, 15, "/br/edu/ifsp/assets/confirmIcon.png");
 		btnConfirm.setEnabled(false);
 
-		btnCancel = new CreateButton().setButton(btnCancel, "Cancelar", "Arial", 0, 15);
+		btnCancel = new CreateButton().setButton(btnCancel, "Cancelar", "Arial", 0, 15, "/br/edu/ifsp/assets/cancelIcon.png");
 
 		addComponents(gridBag);
 	}
@@ -174,6 +177,9 @@ public class WindowDelete extends JFrame {
 
 	private void loadWindow() {
 		setTitle("Excluir");
+		URL url = getClass().getResource("/br/edu/ifsp/assets/joystickIcon.png");
+        Image icone = Toolkit.getDefaultToolkit().getImage(url);
+        setIconImage(icone);
 		pack();
 		setVisible(true);
 		setLocationRelativeTo(null);

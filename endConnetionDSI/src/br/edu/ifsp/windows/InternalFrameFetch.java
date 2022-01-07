@@ -2,11 +2,13 @@ package br.edu.ifsp.windows;
 
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+
 import javax.swing.JButton;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.plaf.basic.BasicInternalFrameUI;
 
 import br.edu.ifsp.controller.ButtonCancelController;
 import br.edu.ifsp.controller.CreateButton;
@@ -16,9 +18,6 @@ import br.edu.ifsp.controller.FetchControler;
 import br.edu.ifsp.controller.LoadConstraintPanel;
 
 public class InternalFrameFetch extends JInternalFrame{
-	private WindowFetch windowFetch;
-	private WindowSelectFetch windowSelectFetch;
-
 	private JPanel pnl;
 	private GridBagLayout gridBag;
 	private JLabel lblFetch;
@@ -28,14 +27,11 @@ public class InternalFrameFetch extends JInternalFrame{
 	
 
 	public InternalFrameFetch(WindowFetch windowFetch, WindowSelectFetch windowSelectFetch) {
-		this.windowFetch = windowFetch;
-		this.windowSelectFetch = windowSelectFetch;
-		
 		createWindow();
 		loadWindow();
 		
-		FetchControler fc = new FetchControler(this, windowSelectFetch, windowFetch);
-		ButtonCancelController bcc = new ButtonCancelController(this, windowSelectFetch, windowFetch);
+		new FetchControler(this, windowSelectFetch, windowFetch);
+		new ButtonCancelController(this, windowSelectFetch, windowFetch);
 	}
 
 	private void createWindow() {
@@ -46,8 +42,8 @@ public class InternalFrameFetch extends JInternalFrame{
 		lblFetch = new CreateLabel().setLabel(lblFetch, "ID", "Arial", 0, 20);
 		fldFetch = new CreateField().setField(fldFetch, 30, "Arial", 0, 20, true);
 		
-		btnFetch = new CreateButton().setButton(btnFetch,   "Buscar", "Arial", 0, 20);
-		btnCancel = new CreateButton().setButton(btnCancel,   "Cancelar", "Arial", 0, 20);
+		btnFetch = new CreateButton().setButton(btnFetch,   "Buscar", "Arial", 0, 20, "/br/edu/ifsp/assets/findIcon.png");
+		btnCancel = new CreateButton().setButton(btnCancel,   "Cancelar", "Arial", 0, 20, "/br/edu/ifsp/assets/cancelIcon.png");
 
 		addComponents(gridBag);
 	}
@@ -67,7 +63,8 @@ public class InternalFrameFetch extends JInternalFrame{
 	}
 
 	private void loadWindow() {
-		setTitle("Busca");
+		BasicInternalFrameUI bifui = (BasicInternalFrameUI) this.getUI();
+		bifui.setNorthPane(null);
 		pack();
 		setVisible(true);
 		setResizable(true);

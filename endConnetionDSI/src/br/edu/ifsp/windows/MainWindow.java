@@ -1,6 +1,9 @@
 package br.edu.ifsp.windows;
 
 import java.awt.GridLayout;
+import java.awt.Image;
+import java.awt.Toolkit;
+import java.net.URL;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -48,10 +51,10 @@ public class MainWindow extends JFrame {
 		lblInfo = new CreateLabel().setLabel(lblInfo, "Selecione a opção que deseja executar.", "Arial", 0, 20);
 
 		pnlButtons = new JPanel(new GridLayout(1, 4));
-		btnAdd = new CreateButton().setButton(btnAdd, "Adicionar", "Arial", 0, 20);
-		btnFetch= new CreateButton().setButton(btnFetch, "Procurar", "Arial", 0, 20);
-		btnEdit = new CreateButton().setButton(btnEdit, "Editar", "Arial", 0, 20);
-		btnDelete = new CreateButton().setButton(btnDelete, "Excluir", "Arial", 0, 20);
+		btnAdd = new CreateButton().setButton(btnAdd, "Adicionar", "Arial", 0, 20, "/br/edu/ifsp/assets/addIcon.png");
+		btnFetch= new CreateButton().setButton(btnFetch, "Procurar", "Arial", 0, 20, "/br/edu/ifsp/assets/listIcon.png");
+		btnEdit = new CreateButton().setButton(btnEdit, "Editar", "Arial", 0, 20, "/br/edu/ifsp/assets/updateIcon.png");
+		btnDelete = new CreateButton().setButton(btnDelete, "Excluir", "Arial", 0, 20, "/br/edu/ifsp/assets/deleteIcon.png");
 
 		addComponents();
 	}
@@ -73,6 +76,9 @@ public class MainWindow extends JFrame {
 
 	private void loadWindow() {
 		setTitle("Inicio");
+		URL url = getClass().getResource("/br/edu/ifsp/assets/joystickIcon.png");
+        Image icone = Toolkit.getDefaultToolkit().getImage(url);
+        setIconImage(icone);
 		pack();
 		setVisible(true);
 		setLocationRelativeTo(null);

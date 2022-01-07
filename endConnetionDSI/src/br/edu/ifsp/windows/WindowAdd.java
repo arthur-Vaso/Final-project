@@ -2,6 +2,9 @@ package br.edu.ifsp.windows;
 
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Image;
+import java.awt.Toolkit;
+import java.net.URL;
 import java.text.ParseException;
 
 import javax.swing.JButton;
@@ -108,9 +111,9 @@ public class WindowAdd extends JFrame {
 		}
 
 		pnlButtons = new JPanel(gridBag);
-		btnConfirm = new CreateButton().setButton(btnConfirm, "Confirmar", "Arial", 0, 15);
+		btnConfirm = new CreateButton().setButton(btnConfirm, "Confirmar", "Arial", 0, 15, "/br/edu/ifsp/assets/confirmIcon.png");
 
-		btnCancel = new CreateButton().setButton(btnCancel, "Cancelar", "Arial", 0, 15);
+		btnCancel = new CreateButton().setButton(btnCancel, "Cancelar", "Arial", 0, 15, "/br/edu/ifsp/assets/cancelIcon.png");
 
 		addComponents(gridBag);
 	}
@@ -152,6 +155,9 @@ public class WindowAdd extends JFrame {
 
 	private void loadWindow() {
 		setTitle("Adicionar jogos");
+		URL url = getClass().getResource("/br/edu/ifsp/assets/joystickIcon.png");
+        Image icone = Toolkit.getDefaultToolkit().getImage(url);
+        setIconImage(icone);
 		pack();
 		setVisible(true);
 		setLocationRelativeTo(null);

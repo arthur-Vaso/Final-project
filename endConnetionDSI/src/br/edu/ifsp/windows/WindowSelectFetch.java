@@ -3,6 +3,9 @@ package br.edu.ifsp.windows;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Image;
+import java.awt.Toolkit;
+import java.net.URL;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -43,12 +46,16 @@ public class WindowSelectFetch extends JFrame {
 
 		lblInfo = new CreateLabel().setLabel(lblInfo, "Procurar por:", "Arial", 0, 20);
 
-		btnByName = new CreateButton().setButton(btnByName,   "ID", "Arial", 0, 20);
-		btnByName.setPreferredSize(new Dimension(140, 30));
-		btnListALL = new CreateButton().setButton(btnListALL, "Listar todos", "Arial", 0, 20);
+		btnByName = new CreateButton().setButton(btnByName,   "ID", "Arial", 0, 20, "/br/edu/ifsp/assets/oneIcon.png");
+		
+		btnListALL = new CreateButton().setButton(btnListALL, "Listar todos", "Arial", 0, 20, "/br/edu/ifsp/assets/twoMoreIcon.png");
 
-		btnCancel = new CreateButton().setButton(btnCancel,   "  Cancelar  ", "Arial", 0, 20);
+		btnCancel = new CreateButton().setButton(btnCancel,   "  Cancelar  ", "Arial", 0, 20, "/br/edu/ifsp/assets/cancelIcon.png");
 
+		btnByName.setPreferredSize(new Dimension(172, 30));
+		btnListALL.setPreferredSize(new Dimension(172, 30));
+		btnCancel.setPreferredSize(new Dimension(172, 30));
+		
 		addComponents(gridBag);
 	}
 
@@ -68,6 +75,9 @@ public class WindowSelectFetch extends JFrame {
 
 	private void loadWindow() {
 		setTitle("");
+		URL url = getClass().getResource("/br/edu/ifsp/assets/joystickIcon.png");
+        Image icone = Toolkit.getDefaultToolkit().getImage(url);
+        setIconImage(icone);
 		pack();
 		setVisible(true);
 		setLocationRelativeTo(null);
